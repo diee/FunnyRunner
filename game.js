@@ -207,6 +207,7 @@ var onpress = function onpress(evt) {
                 pipes.reset();
                 currentstate = states.Splash;
                 score = 0;
+                alert("mx: "+mx + " my: "+my);
             }
             break;
     }
