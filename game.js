@@ -199,7 +199,7 @@ var onpress = function onpress(evt) {
             if (mx == null || my == null) {
                 mx = evt.touches[0].clientX;
                 my = evt.touches[0].clientY;
-
+                 alert("mx: "+mx + " my: "+my);
             }
 
             if (okbutton.x < mx && mx < okbutton.x + okbutton.width &&
