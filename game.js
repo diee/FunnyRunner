@@ -201,9 +201,7 @@ var onpress = function onpress(evt) {
 
             if (okbutton.x < mx && mx < okbutton.x + okbutton.width &&
                 okbutton.y < my && my < okbutton.y + okbutton.height) {
-                pipes.reset();
-                currentstate = states.Splash;
-                score = 0;
+                dog.gravity= 0.15;
             }
         
             if(cntJump <3)
