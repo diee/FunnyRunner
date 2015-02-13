@@ -202,6 +202,8 @@ var onpress = function onpress(evt) {
             if (okbutton.x < mx && mx < okbutton.x + okbutton.width &&
                 okbutton.y < my && my < okbutton.y + okbutton.height) {
                 dog.gravity= 0.15;
+            }else{
+                dog.gravity=0.25;
             }
         
             if(cntJump <3)
