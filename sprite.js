@@ -62,7 +62,8 @@ function initSprites(img) {
         Share: new Sprite(img, 159, 177, 40, 14),
         Score: new Sprite(img, 79, 191, 40, 14),
         Ok: new Sprite(img, 119, 191, 40, 14),
-        Start: new Sprite(img, 159, 191, 40, 14)
+        Start: new Sprite(img, 159, 191, 40, 14),
+        Test : new Sprite(img, 119,177,40,14)
     }
 
     s_score = new Sprite(img, 138, 56, 113, 58);
