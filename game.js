@@ -33,7 +33,7 @@ var
         rotation: 0,
         radius: 12,
         gravity: 0.25,
-        _jump: 5.6,
+        _jump: 5.1,
 
         jump: function () {
             this.velocity = -this._jump;
@@ -106,20 +106,22 @@ var
         },
 
         update: function () {
-
+            var altura= 30;
             //dificultades 
             var framesvalue;
             if(score ===0){
-                framesvalue =120;    
+                framesvalue =80;    
             }else if(score >=2 && score <6){
                 framesvalue = 100;
+                altura = 20;
             }else if(score >=7){
-                framesvalue = 120;
+                framesvalue = 90;
             }
 
 
             if (frames % framesvalue === 0) {
-                var _y = height - (s_pipeSouth.height + s_fg.height + 120 + 20 * Math.random());
+                // altura de obstaculos
+                var _y = height - (s_pipeSouth.height + s_fg.height + 80 + altura * Math.random());
                 this._pipes.push({
                     x: 500,
                     y: _y,
@@ -136,7 +138,7 @@ var
 
                     var cx = Math.min(Math.max(dog.x, p.x), p.x + p.width);
                     var cy1 = Math.min(Math.max(dog.y, p.y), p.y + p.height);
-                    var cy2 = Math.min(Math.max(dog.y, p.y + p.height + 80), p.y + 2 * p.height + 80);
+                    var cy2 = Math.min(Math.max(dog.y, p.y + p.height + 80), p.y + 2 * p.height - 80);
 
                     var dx = dog.x - cx;
                     var dy1 = dog.y - cy1;
@@ -188,6 +190,22 @@ var onpress = function onpress(evt) {
 
         case
         states.Game:
+
+         var mx = evt.offsetX, my = evt.offsetY;
+
+            if (mx == null || my == null) {
+                mx = evt.touches[0].clientX;
+                my = evt.touches[0].clientY;
+                alert("mx: "+mx + " my: "+my);
+            }
+
+            if (okbutton.x < mx && mx < okbutton.x + okbutton.width &&
+                okbutton.y < my && my < okbutton.y + okbutton.height) {
+                pipes.reset();
+                currentstate = states.Splash;
+                score = 0;
+            }
+        
             if(cntJump <3)
             dog.jump();
             break;
@@ -199,7 +217,7 @@ var onpress = function onpress(evt) {
             if (mx == null || my == null) {
                 mx = evt.touches[0].clientX;
                 my = evt.touches[0].clientY;
-                 alert("mx: "+mx + " my: "+my);
+                alert("mx: "+mx + " my: "+my);
             }
 
             if (okbutton.x < mx && mx < okbutton.x + okbutton.width &&
@@ -207,7 +225,6 @@ var onpress = function onpress(evt) {
                 pipes.reset();
                 currentstate = states.Splash;
                 score = 0;
-                alert("mx: "+mx + " my: "+my);
             }
             break;
     }
@@ -306,7 +323,7 @@ var render = function render() {
 
     s_fg.draw(ctx, fgpos, height - s_fg.height);
     s_fg.draw(ctx, fgpos + s_fg.width, height - s_fg.height);
-
+ s_buttons.Rate.draw(ctx, okbutton.x, okbutton.y + 78);
     var width2 = width / 2;
 
     if (currentstate === states.Splash) {
@@ -324,7 +341,7 @@ var render = function render() {
         s_numberS.draw(ctx, width2 - 47, height - 164, score, null, 10);
         s_numberS.draw(ctx, width2 - 47, height - 207, best, null, 10);
 
-        if (score >= Bronze && score < Silver) {
+       /* if (score >= Bronze && score < Silver) {
             s_medals.Bronze.draw(ctx, width2 / 2 - 9, height - 182);
         } else if (score >= Silver && score < Gold) {
             s_medals.Silver.draw(ctx, width2 / 2 - 9, height - 182);
@@ -332,7 +349,7 @@ var render = function render() {
             s_medals.Gold.draw(ctx, width2 / 2 - 9, height - 182);
         } else if (score >= Platinum) {
             s_medals.Platinum.draw(ctx, width2 / 2 - 9, height - 182);
-        }
+        }*/
 
 
     } else {
