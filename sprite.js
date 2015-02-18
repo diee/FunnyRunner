@@ -48,7 +48,7 @@ function initSprites(img) {
     s_fg = new Sprite(img, 138, 0, 160, 26);
 
     //s_pipeNorth = new Sprite(img, 251, 0, 10, 200);
-    s_pipeNorth = new Sprite(img, 253, 57, 16, 64);
+    s_pipeNorth = new Sprite(img, 253, 57, 20, 35);
     s_pipeSouth = new Sprite(img, 277, 0, 10, 200);
 
     s_text = {
@@ -67,7 +67,7 @@ function initSprites(img) {
     }
 
     s_score = new Sprite(img, 138, 56, 113, 58);
-    s_splash = new Sprite(img, 0, 114, 59, 49);
+    s_splash = new Sprite(img, 0, 130, 59, 39);
 
     s_numberS = new Sprite(img, 0, 177, 6, 7);
     s_numberB = new Sprite(img, 0, 188, 7, 10);
