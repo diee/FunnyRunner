@@ -33,7 +33,7 @@ var
         rotation: 0,
         radius: 12,
         gravity: 0.25,
-        _jump: 5.1,
+        _jump: 6.1,
 
         jump: function () {
             this.velocity = -this._jump;
@@ -100,9 +100,11 @@ var
 
     pipes = {
         _pipes: [],
+        _enemy: [],
 
         reset: function () {
             this._pipes = [];
+            this._enemy = [];
         },
 
         update: function () {
@@ -121,10 +123,19 @@ var
 
             if (frames % framesvalue === 0) {
                 // altura de obstaculos
-                var _y = height - (s_pipeSouth.height + s_fg.height + 80 + altura * Math.random());
+                //enemigo volador
+                var _ye = 350;
+                var _y = height - (s_pipeSouth.height + s_fg.height + 92 + 1 +altura * Math.random());
                 this._pipes.push({
                     x: 500,
                     y: _y,
+                    width: s_pipeSouth.width,
+                    height: s_pipeSouth.height
+                });
+
+                this._enemy.push({
+                    x: 500,
+                    y: _ye,
                     width: s_pipeSouth.width,
                     height: s_pipeSouth.height
                 });
@@ -169,13 +180,21 @@ var
         },
 
         draw: function (ctx) {
+            var contAux;
             for (var i = 0, len = this._pipes.length; i < len; i++) {
                 var p = this._pipes[i];
                 //s_pipeSouth.draw(ctx, p.x, p.y);
                 s_pipeNorth.draw(ctx, p.x, p.y + 80 + p.height);
+                contAux++;
+                if(contAux > 5){
+                    s_buttons.Share.draw(ctx, p.x, p.y + 80 + p.height);
+                    contAux=0;
+                }
             }
+
         }
     };
+
 
 var onpress = function onpress(evt) {
     cntJump++;
@@ -191,7 +210,7 @@ var onpress = function onpress(evt) {
         case
         states.Game:
 
-         var mx = evt.offsetX, my = evt.offsetY;
+        /* var mx = evt.offsetX, my = evt.offsetY;
 
             if (mx == null || my == null) {
                 mx = evt.touches[0].clientX;
@@ -201,11 +220,11 @@ var onpress = function onpress(evt) {
 
             if (okbutton.x < mx && mx < okbutton.x + okbutton.width &&
                 okbutton.y < my && my < okbutton.y + okbutton.height) {
-                dog.gravity= 0.15;
-            }else{
-                dog.gravity=0.25;
-            }
-        
+                pipes.reset();
+                currentstate = states.Splash;
+                score = 0;
+            }*/
+
             if(cntJump <3)
             dog.jump();
             break;
@@ -323,7 +342,7 @@ var render = function render() {
 
     s_fg.draw(ctx, fgpos, height - s_fg.height);
     s_fg.draw(ctx, fgpos + s_fg.width, height - s_fg.height);
- s_buttons.Rate.draw(ctx, okbutton.x, okbutton.y + 78);
+ 
     var width2 = width / 2;
 
     if (currentstate === states.Splash) {
@@ -359,4 +378,3 @@ var render = function render() {
 }
 
 main();
-
