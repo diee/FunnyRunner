@@ -49,7 +49,9 @@ function initSprites(img) {
 
     //s_pipeNorth = new Sprite(img, 251, 0, 10, 200);
     s_pipeNorth = new Sprite(img, 253, 57, 20, 35);
-    s_pipeSouth = new Sprite(img, 277, 0, 10, 200);
+    //s_pipeSouth = new Sprite(img, 277, 0, 10, 200);
+    //pajaro
+    s_pipeSouth = new Sprite(img, 283, 126, 14, 14);
 
     s_text = {
         Flappydog: new Sprite(img, 59, 114, 96, 22),

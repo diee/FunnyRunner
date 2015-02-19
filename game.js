@@ -149,7 +149,7 @@ var
 
                     var cx = Math.min(Math.max(dog.x, p.x), p.x + p.width);
                     var cy1 = Math.min(Math.max(dog.y, p.y), p.y + p.height);
-                    var cy2 = Math.min(Math.max(dog.y, p.y + p.height + 80), p.y + 2 * p.height - 80);
+                    var cy2 = Math.min(Math.max(dog.y, p.y + p.height + 80), p.y + 2 * p.height + 100);
 
                     var dx = dog.x - cx;
                     var dy1 = dog.y - cy1;
@@ -180,16 +180,10 @@ var
         },
 
         draw: function (ctx) {
-            var contAux;
             for (var i = 0, len = this._pipes.length; i < len; i++) {
                 var p = this._pipes[i];
-                //s_pipeSouth.draw(ctx, p.x, p.y);
+                s_pipeSouth.draw(ctx, p.x, p.y+30);
                 s_pipeNorth.draw(ctx, p.x, p.y + 80 + p.height);
-                contAux++;
-                if(contAux > 5){
-                    s_buttons.Share.draw(ctx, p.x, p.y + 80 + p.height);
-                    contAux=0;
-                }
             }
 
         }
