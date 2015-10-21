@@ -1,3 +1,2 @@
 # FunnyRunner
-test
-This is just a test to upload something
+Funny Runner is a simple game, based on flappy bird code.
